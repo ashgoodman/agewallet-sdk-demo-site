@@ -1,0 +1,31 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "TEAMID.io.agewallet.sdk.demo.reactnative",
+        "paths": ["/callback", "/callback/*"]
+      },
+      {
+        "appID": "TEAMID.io.agewallet.sdk.demo.flutter",
+        "paths": ["/callback", "/callback/*"]
+      },
+      {
+        "appID": "TEAMID.io.agewallet.sdk.demo.ionic",
+        "paths": ["/callback", "/callback/*"]
+      },
+      {
+        "appID": "TEAMID.io.agewallet.sdk.demo.ios",
+        "paths": ["/callback", "/callback/*"]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "TEAMID.io.agewallet.sdk.demo.reactnative",
+      "TEAMID.io.agewallet.sdk.demo.flutter",
+      "TEAMID.io.agewallet.sdk.demo.ionic",
+      "TEAMID.io.agewallet.sdk.demo.ios"
+    ]
+  }
+}
