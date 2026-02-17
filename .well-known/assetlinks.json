@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "io.agewallet.sdk.demo.reactnative",
-      "sha256_cert_fingerprints": ["YOUR_SHA256_FINGERPRINT_HERE"]
+      "sha256_cert_fingerprints": ["14:66:62:F5:6E:DB:5E:C2:1E:C8:ED:1C:AB:FF:52:13:41:F1:1F:FB:A2:70:E4:C3:68:09:D3:86:48:30:43:6D"]
     }
   },
   {
@@ -12,7 +12,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "io.agewallet.sdk.demo.flutter",
-      "sha256_cert_fingerprints": ["YOUR_SHA256_FINGERPRINT_HERE"]
+      "sha256_cert_fingerprints": ["14:66:62:F5:6E:DB:5E:C2:1E:C8:ED:1C:AB:FF:52:13:41:F1:1F:FB:A2:70:E4:C3:68:09:D3:86:48:30:43:6D"]
     }
   },
   {
@@ -20,7 +20,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "io.agewallet.sdk.demo.ionic",
-      "sha256_cert_fingerprints": ["YOUR_SHA256_FINGERPRINT_HERE"]
+      "sha256_cert_fingerprints": ["14:66:62:F5:6E:DB:5E:C2:1E:C8:ED:1C:AB:FF:52:13:41:F1:1F:FB:A2:70:E4:C3:68:09:D3:86:48:30:43:6D"]
     }
   },
   {
@@ -28,7 +28,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "io.agewallet.sdk.demo.android",
-      "sha256_cert_fingerprints": ["YOUR_SHA256_FINGERPRINT_HERE"]
+      "sha256_cert_fingerprints": ["14:66:62:F5:6E:DB:5E:C2:1E:C8:ED:1C:AB:FF:52:13:41:F1:1F:FB:A2:70:E4:C3:68:09:D3:86:48:30:43:6D"]
     }
   }
 ]
