@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Returning to app...</title>
+    <title>Open in App</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -21,54 +21,52 @@
         .card {
             background: white;
             border-radius: 16px;
-            padding: 40px 30px;
-            max-width: 360px;
+            padding: 36px 24px;
+            max-width: 380px;
             width: 100%;
             box-shadow: 0 2px 16px rgba(0,0,0,0.1);
         }
-        .icon { font-size: 48px; margin-bottom: 16px; }
+        .icon { font-size: 48px; margin-bottom: 12px; }
         h1 { font-size: 22px; color: #1f2937; margin: 0 0 8px; }
-        p { font-size: 15px; color: #6b7280; margin: 0 0 24px; line-height: 1.5; }
+        p { font-size: 14px; color: #6b7280; margin: 0 0 20px; line-height: 1.5; }
         .btn {
-            display: inline-block;
+            display: block;
             background: #6366f1;
             color: white;
-            padding: 14px 28px;
+            padding: 14px 20px;
             border-radius: 10px;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
-            cursor: pointer;
-            border: none;
-            width: 100%;
+            margin-bottom: 10px;
             box-sizing: border-box;
         }
-        .spinner {
-            width: 40px; height: 40px;
-            border: 3px solid #e5e7eb;
-            border-top-color: #6366f1;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 20px;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        #status { display: block; }
-        #fallback { display: none; }
+        .btn:last-child { margin-bottom: 0; }
+        .btn-label { font-size: 12px; font-weight: 400; opacity: 0.8; display: block; margin-top: 2px; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div id="status">
-            <div class="spinner"></div>
-            <h1>Returning to app...</h1>
-            <p>Opening the AgeWallet demo app.</p>
-        </div>
-        <div id="fallback">
-            <div class="icon">📱</div>
-            <h1>Open in App</h1>
-            <p>Tap the button below to return to the AgeWallet demo app and complete verification.</p>
-            <a id="open-btn" class="btn" href="#">Open App</a>
-        </div>
+    <div class="card" id="android-card" style="display:none">
+        <div class="icon">✅</div>
+        <h1>Verification complete</h1>
+        <p>Tap the demo app you installed to complete sign-in.</p>
+        <a class="btn" id="btn-android">Android Native<span class="btn-label">io.agewallet.sdk.demo.android</span></a>
+        <a class="btn" id="btn-flutter">Flutter<span class="btn-label">io.agewallet.sdk.demo.flutter</span></a>
+        <a class="btn" id="btn-rn">React Native<span class="btn-label">io.agewallet.sdk.demo.reactnative</span></a>
+        <a class="btn" id="btn-ionic">Ionic<span class="btn-label">io.agewallet.sdk.demo.ionic</span></a>
+    </div>
+
+    <div class="card" id="ios-card" style="display:none">
+        <div class="icon">✅</div>
+        <h1>Verification complete</h1>
+        <p>Tap below to return to the AgeWallet demo app.</p>
+        <a class="btn" id="btn-ios" href="#">Open App</a>
+    </div>
+
+    <div class="card" id="desktop-card" style="display:none">
+        <div class="icon">ℹ️</div>
+        <h1>Mobile only</h1>
+        <p>This callback page is used by the AgeWallet mobile SDK demo apps to complete OIDC verification.</p>
     </div>
 
     <script>
@@ -77,41 +75,25 @@
         var isAndroid = /android/i.test(navigator.userAgent);
         var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
-        function showFallback(href) {
-            document.getElementById('status').style.display = 'none';
-            document.getElementById('fallback').style.display = 'block';
-            document.getElementById('open-btn').href = href;
+        function intentUrl(pkg) {
+            return 'intent://agewallet-sdk-demo.netlify.app' + fullPath
+                + '#Intent;scheme=https;action=android.intent.action.VIEW;'
+                + 'category=android.intent.category.BROWSABLE;'
+                + 'package=' + pkg + ';end';
         }
 
         if (isAndroid) {
-            // Intent URL triggers Android's intent resolution — routes to the installed demo app
-            // via its App Link intent filter for this domain
-            var intentUrl = 'intent://agewallet-sdk-demo.netlify.app' + fullPath
-                + '#Intent;scheme=https;action=android.intent.action.VIEW;'
-                + 'category=android.intent.category.BROWSABLE;end';
-
-            window.location.replace(intentUrl);
-
-            // If intent URL didn't open the app, show fallback after 2s
-            setTimeout(function() {
-                showFallback(intentUrl);
-            }, 2000);
-
+            document.getElementById('android-card').style.display = 'block';
+            document.getElementById('btn-android').href = intentUrl('io.agewallet.sdk.demo.android');
+            document.getElementById('btn-flutter').href = intentUrl('io.agewallet.sdk.demo.flutter');
+            document.getElementById('btn-rn').href = intentUrl('io.agewallet.sdk.demo.reactnative');
+            document.getElementById('btn-ionic').href = intentUrl('io.agewallet.sdk.demo.ionic');
         } else if (isIOS) {
-            // Universal Links: navigate to the same https URL
-            // iOS will intercept it if the app is installed and apple-app-site-association is configured
-            var universalLink = 'https://agewallet-sdk-demo.netlify.app' + fullPath;
-            showFallback(universalLink);
-
+            document.getElementById('ios-card').style.display = 'block';
+            // Universal Link — iOS intercepts if the app is installed and AASA is configured
+            document.getElementById('btn-ios').href = 'https://agewallet-sdk-demo.netlify.app' + fullPath;
         } else {
-            // Desktop — this page is only meaningful on mobile
-            document.getElementById('status').style.display = 'none';
-            document.getElementById('fallback').style.display = 'block';
-            document.getElementById('fallback').querySelector('.icon').textContent = 'ℹ️';
-            document.getElementById('fallback').querySelector('h1').textContent = 'Mobile only';
-            document.getElementById('fallback').querySelector('p').textContent =
-                'This callback page is used by the AgeWallet mobile SDK demo apps.';
-            document.getElementById('open-btn').style.display = 'none';
+            document.getElementById('desktop-card').style.display = 'block';
         }
     </script>
 </body>
