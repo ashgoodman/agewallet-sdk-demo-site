@@ -86,7 +86,7 @@
             document.getElementById('android-card').style.display = 'block';
             document.getElementById('btn-android').href = intentUrl('io.agewallet.sdk.demo.android');
             document.getElementById('btn-flutter').href = intentUrl('io.agewallet.sdk.demo.flutter');
-            document.getElementById('btn-rn').href = intentUrl('io.agewallet.sdk.demo.reactnative');
+            document.getElementById('btn-rn').href = 'agewallet-rn://callback' + params;
             document.getElementById('btn-ionic').href = intentUrl('io.agewallet.sdk.demo.ionic');
         } else if (isIOS) {
             document.getElementById('ios-card').style.display = 'block';
