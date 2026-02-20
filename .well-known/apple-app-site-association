@@ -3,29 +3,29 @@
     "apps": [],
     "details": [
       {
-        "appID": "TEAMID.io.agewallet.sdk.demo.reactnative",
+        "appID": "F5T3W2C69Y.io.agewallet.sdk.demo.reactnative",
         "paths": ["/callback", "/callback/*"]
       },
       {
-        "appID": "TEAMID.io.agewallet.sdk.demo.flutter",
+        "appID": "F5T3W2C69Y.io.agewallet.sdk.demo.flutter",
         "paths": ["/callback", "/callback/*"]
       },
       {
-        "appID": "TEAMID.io.agewallet.sdk.demo.ionic",
+        "appID": "F5T3W2C69Y.io.agewallet.sdk.demo.ionic",
         "paths": ["/callback", "/callback/*"]
       },
       {
-        "appID": "TEAMID.io.agewallet.sdk.demo.ios",
+        "appID": "F5T3W2C69Y.io.agewallet.sdk.demo.ios",
         "paths": ["/callback", "/callback/*"]
       }
     ]
   },
   "webcredentials": {
     "apps": [
-      "TEAMID.io.agewallet.sdk.demo.reactnative",
-      "TEAMID.io.agewallet.sdk.demo.flutter",
-      "TEAMID.io.agewallet.sdk.demo.ionic",
-      "TEAMID.io.agewallet.sdk.demo.ios"
+      "F5T3W2C69Y.io.agewallet.sdk.demo.reactnative",
+      "F5T3W2C69Y.io.agewallet.sdk.demo.flutter",
+      "F5T3W2C69Y.io.agewallet.sdk.demo.ionic",
+      "F5T3W2C69Y.io.agewallet.sdk.demo.ios"
     ]
   }
 }

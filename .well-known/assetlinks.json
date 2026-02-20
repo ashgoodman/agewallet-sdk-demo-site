@@ -4,7 +4,10 @@
     "target": {
       "namespace": "android_app",
       "package_name": "io.agewallet.sdk.demo.reactnative",
-      "sha256_cert_fingerprints": ["14:66:62:F5:6E:DB:5E:C2:1E:C8:ED:1C:AB:FF:52:13:41:F1:1F:FB:A2:70:E4:C3:68:09:D3:86:48:30:43:6D"]
+      "sha256_cert_fingerprints": [
+        "14:66:62:F5:6E:DB:5E:C2:1E:C8:ED:1C:AB:FF:52:13:41:F1:1F:FB:A2:70:E4:C3:68:09:D3:86:48:30:43:6D",
+        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C"
+      ]
     }
   },
   {

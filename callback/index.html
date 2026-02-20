@@ -83,11 +83,23 @@
         }
 
         if (isAndroid) {
-            document.getElementById('android-card').style.display = 'block';
-            document.getElementById('btn-android').href = intentUrl('io.agewallet.sdk.demo.android');
-            document.getElementById('btn-flutter').href = intentUrl('io.agewallet.sdk.demo.flutter');
-            document.getElementById('btn-rn').href = 'agewallet-rn://callback' + params;
-            document.getElementById('btn-ionic').href = intentUrl('io.agewallet.sdk.demo.ionic');
+            var stateParam = new URLSearchParams(params).get('state');
+            var prefix = stateParam && stateParam.indexOf(':') > -1 ? stateParam.split(':')[0] : null;
+            var autoMap = {
+                rn: 'io.agewallet.sdk.demo.reactnative',
+                flutter: 'io.agewallet.sdk.demo.flutter',
+                ionic: 'io.agewallet.sdk.demo.ionic',
+                android: 'io.agewallet.sdk.demo.android'
+            };
+            if (autoMap[prefix]) {
+                window.location.href = intentUrl(autoMap[prefix]);
+            } else {
+                document.getElementById('android-card').style.display = 'block';
+                document.getElementById('btn-android').href = intentUrl('io.agewallet.sdk.demo.android');
+                document.getElementById('btn-flutter').href = intentUrl('io.agewallet.sdk.demo.flutter');
+                document.getElementById('btn-rn').href = intentUrl('io.agewallet.sdk.demo.reactnative');
+                document.getElementById('btn-ionic').href = intentUrl('io.agewallet.sdk.demo.ionic');
+            }
         } else if (isIOS) {
             document.getElementById('ios-card').style.display = 'block';
             // Universal Link — iOS intercepts if the app is installed and AASA is configured
