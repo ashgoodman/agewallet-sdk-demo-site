@@ -102,8 +102,9 @@
             }
         } else if (isIOS) {
             document.getElementById('ios-card').style.display = 'block';
-            // Universal Link — iOS intercepts if the app is installed and AASA is configured
-            document.getElementById('btn-ios').href = 'https://agewallet-sdk-demo.netlify.app' + fullPath;
+            var iosUrl = 'agewallet-sdk-demo://agewallet-sdk-demo.netlify.app' + fullPath;
+            document.getElementById('btn-ios').href = iosUrl;
+            window.location.href = iosUrl;
         } else {
             document.getElementById('desktop-card').style.display = 'block';
         }
