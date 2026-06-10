@@ -82,6 +82,25 @@
                 + 'package=' + pkg + ';end';
         }
 
+        // Gate intent-URL fires on document visibility. When this page loads in a
+        // backgrounded browser tab (user is still in AgeWalletMobileApp finishing
+        // verification), Android's background-activity-launch restriction silently
+        // drops `window.location.href = 'intent://...'`. The page is left blank when
+        // the user returns. By deferring the fire until visibilitychange, the intent
+        // dispatches from a foregrounded tab where Android allows it.
+        function fireWhenVisible(target) {
+            if (!document.hidden) {
+                window.location.href = target;
+                return;
+            }
+            document.addEventListener('visibilitychange', function handler() {
+                if (!document.hidden) {
+                    document.removeEventListener('visibilitychange', handler);
+                    window.location.href = target;
+                }
+            });
+        }
+
         if (isAndroid) {
             var stateParam = new URLSearchParams(params).get('state');
             var prefix = stateParam && stateParam.indexOf(':') > -1 ? stateParam.split(':')[0] : null;
@@ -92,7 +111,7 @@
                 android: 'io.agewallet.sdk.demo.android'
             };
             if (autoMap[prefix]) {
-                window.location.href = intentUrl(autoMap[prefix]);
+                fireWhenVisible(intentUrl(autoMap[prefix]));
             } else {
                 document.getElementById('android-card').style.display = 'block';
                 document.getElementById('btn-android').href = intentUrl('io.agewallet.sdk.demo.android');
@@ -104,7 +123,7 @@
             document.getElementById('ios-card').style.display = 'block';
             var iosUrl = 'agewallet-sdk-demo://agewallet-sdk-demo.netlify.app' + fullPath;
             document.getElementById('btn-ios').href = iosUrl;
-            window.location.href = iosUrl;
+            fireWhenVisible(iosUrl);
         } else {
             document.getElementById('desktop-card').style.display = 'block';
         }
